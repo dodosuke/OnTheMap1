@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C635006E1D30F1DA000E3EE0 /* SLTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C635006D1D30F1DA000E3EE0 /* SLTableViewController.swift */; };
+		C63500721D31D419000E3EE0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63500711D31D419000E3EE0 /* MapViewController.swift */; };
 		C64F1C1C1D252F1500222112 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C1B1D252F1500222112 /* AppDelegate.swift */; };
 		C64F1C1E1D252F1500222112 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C1D1D252F1500222112 /* LoginViewController.swift */; };
 		C64F1C211D252F1500222112 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64F1C1F1D252F1500222112 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		C635006D1D30F1DA000E3EE0 /* SLTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTableViewController.swift; sourceTree = "<group>"; };
+		C63500711D31D419000E3EE0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C64F1C181D252F1500222112 /* OnTheMap1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64F1C1B1D252F1500222112 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C64F1C1D1D252F1500222112 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			children = (
 				C64F1C1D1D252F1500222112 /* LoginViewController.swift */,
 				C635006D1D30F1DA000E3EE0 /* SLTableViewController.swift */,
+				C63500711D31D419000E3EE0 /* MapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				C64F1C311D26062E00222112 /* Constants.swift in Sources */,
 				C64F1C351D2DB34C00222112 /* GCDBlackBox.swift in Sources */,
 				C635006E1D30F1DA000E3EE0 /* SLTableViewController.swift in Sources */,
+				C63500721D31D419000E3EE0 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

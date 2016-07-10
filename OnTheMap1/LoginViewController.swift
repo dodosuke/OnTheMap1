@@ -118,15 +118,10 @@ class LoginViewController: UIViewController {
                     }
                 }
             } catch {
-                print("Could not parse the data as JSON: '\(data)'")
+                displayError("Could not parse the data as JSON: '\(data)'")
                 return
             }
             
-            /* GUARD: Did Udacity return an error? */
-            if let _ = parsedResult[Constants.OTMResponseKeys.StatusCode] as? Int {
-                displayError("Udacity returned an error. See the '\(Constants.OTMResponseKeys.StatusCode)' and '\(Constants.OTMResponseKeys.StatusMessage)' in \(parsedResult)")
-                return
-            }
             
             /* 6. Use the data! */
             self.completeLogin()
