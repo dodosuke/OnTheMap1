@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C635006E1D30F1DA000E3EE0 /* SLTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C635006D1D30F1DA000E3EE0 /* SLTableViewController.swift */; };
+		C635006E1D30F1DA000E3EE0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C635006D1D30F1DA000E3EE0 /* TableViewController.swift */; };
 		C63500721D31D419000E3EE0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C63500711D31D419000E3EE0 /* MapViewController.swift */; };
 		C64F1C1C1D252F1500222112 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C1B1D252F1500222112 /* AppDelegate.swift */; };
 		C64F1C1E1D252F1500222112 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C1D1D252F1500222112 /* LoginViewController.swift */; };
@@ -15,12 +15,12 @@
 		C64F1C231D252F1500222112 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C64F1C221D252F1500222112 /* Assets.xcassets */; };
 		C64F1C261D252F1500222112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64F1C241D252F1500222112 /* LaunchScreen.storyboard */; };
 		C64F1C311D26062E00222112 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C301D26062E00222112 /* Constants.swift */; };
-		C64F1C331D2D1B2400222112 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C321D2D1B2400222112 /* StudentLocation.swift */; };
 		C64F1C351D2DB34C00222112 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C341D2DB34C00222112 /* GCDBlackBox.swift */; };
+		C6D09ED81D351D10002889F4 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D09ED71D351D10002889F4 /* StudentLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		C635006D1D30F1DA000E3EE0 /* SLTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SLTableViewController.swift; sourceTree = "<group>"; };
+		C635006D1D30F1DA000E3EE0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		C63500711D31D419000E3EE0 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		C64F1C181D252F1500222112 /* OnTheMap1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C64F1C1B1D252F1500222112 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -30,8 +30,8 @@
 		C64F1C251D252F1500222112 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C64F1C271D252F1500222112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C64F1C301D26062E00222112 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C64F1C321D2D1B2400222112 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		C64F1C341D2DB34C00222112 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		C6D09ED71D351D10002889F4 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,7 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				C64F1C301D26062E00222112 /* Constants.swift */,
-				C64F1C321D2D1B2400222112 /* StudentLocation.swift */,
+				C6D09ED71D351D10002889F4 /* StudentLocation.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -97,7 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				C64F1C1D1D252F1500222112 /* LoginViewController.swift */,
-				C635006D1D30F1DA000E3EE0 /* SLTableViewController.swift */,
+				C635006D1D30F1DA000E3EE0 /* TableViewController.swift */,
 				C63500711D31D419000E3EE0 /* MapViewController.swift */,
 			);
 			name = Controller;
@@ -175,12 +175,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C64F1C331D2D1B2400222112 /* StudentLocation.swift in Sources */,
 				C64F1C1E1D252F1500222112 /* LoginViewController.swift in Sources */,
 				C64F1C1C1D252F1500222112 /* AppDelegate.swift in Sources */,
+				C6D09ED81D351D10002889F4 /* StudentLocation.swift in Sources */,
 				C64F1C311D26062E00222112 /* Constants.swift in Sources */,
 				C64F1C351D2DB34C00222112 /* GCDBlackBox.swift in Sources */,
-				C635006E1D30F1DA000E3EE0 /* SLTableViewController.swift in Sources */,
+				C635006E1D30F1DA000E3EE0 /* TableViewController.swift in Sources */,
 				C63500721D31D419000E3EE0 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

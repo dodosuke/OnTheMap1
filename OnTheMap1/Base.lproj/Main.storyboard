@@ -35,7 +35,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login with Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qV-uF-hLD">
                                                 <rect key="frame" x="0.0" y="0.0" width="560" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fzm-iU-jiO" userLabel="Username Text Field">
@@ -73,7 +73,7 @@
                                             <constraint firstAttribute="height" constant="300" id="xBi-o2-2Qi"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -116,11 +116,11 @@
             </objects>
             <point key="canvasLocation" x="253" y="1044"/>
         </scene>
-        <!--Item-->
+        <!--List-->
         <scene sceneID="CXL-7P-ifL">
             <objects>
-                <navigationController id="TUC-HL-hlc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="List" id="J2E-xE-NBz"/>
+                <navigationController id="TUC-HL-hlc" userLabel="List" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="List" image="List" id="J2E-xE-NBz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Jf-5q-3CI">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -133,11 +133,11 @@
             </objects>
             <point key="canvasLocation" x="1073" y="1404"/>
         </scene>
-        <!--Item-->
+        <!--Map-->
         <scene sceneID="tZ2-ha-l5Q">
             <objects>
-                <navigationController id="QH7-NV-hH6" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="Map" id="7Zz-fI-Mg2"/>
+                <navigationController id="QH7-NV-hH6" userLabel="Map" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="7Zz-fI-Mg2"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9Fw-cs-Yd9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -186,13 +186,13 @@
         <!--Table View Controller-->
         <scene sceneID="XkC-mN-Y0c">
             <objects>
-                <tableViewController id="Fc2-hd-ljb" customClass="SLTableViewController" sceneMemberID="viewController">
+                <tableViewController id="Fc2-hd-ljb" customClass="TableViewController" customModule="OnTheMap1" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="hKb-vh-OZ7">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="7Cw-IC-GBR">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableViewCell" id="7Cw-IC-GBR">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Cw-IC-GBR" id="RRw-xK-s9C">

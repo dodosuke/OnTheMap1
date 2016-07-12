@@ -45,6 +45,10 @@ class LoginViewController: UIViewController {
     
     
     private func completeLogin() {
+        
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        appDelegate.locations = StudentLocation.locationFromResults(self.appDelegate.locationData)
+        
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
             self.setUIEnabled(true)
