@@ -34,7 +34,7 @@ class TableViewController: UITableViewController {
         let location = locations[indexPath.row]
         
         // Set the name and image
-        cell.textLabel?.text = (location.firstName) + (location.lastName)
+        cell.textLabel?.text = (location.firstName) + " " + (location.lastName)
         
         return cell
     }
@@ -44,9 +44,6 @@ class TableViewController: UITableViewController {
 //    }
     
 
-    
-    
-    //  call the meme viewer and editor
     
 //    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 //        

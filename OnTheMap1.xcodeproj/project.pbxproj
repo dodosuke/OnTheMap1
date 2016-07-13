@@ -17,6 +17,7 @@
 		C64F1C311D26062E00222112 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C301D26062E00222112 /* Constants.swift */; };
 		C64F1C351D2DB34C00222112 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C341D2DB34C00222112 /* GCDBlackBox.swift */; };
 		C6D09ED81D351D10002889F4 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D09ED71D351D10002889F4 /* StudentLocation.swift */; };
+		C6D09EDA1D36D6D9002889F4 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D09ED91D36D6D9002889F4 /* WebViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		C64F1C301D26062E00222112 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C64F1C341D2DB34C00222112 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		C6D09ED71D351D10002889F4 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
+		C6D09ED91D36D6D9002889F4 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				C64F1C1D1D252F1500222112 /* LoginViewController.swift */,
 				C635006D1D30F1DA000E3EE0 /* TableViewController.swift */,
 				C63500711D31D419000E3EE0 /* MapViewController.swift */,
+				C6D09ED91D36D6D9002889F4 /* WebViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 				C64F1C351D2DB34C00222112 /* GCDBlackBox.swift in Sources */,
 				C635006E1D30F1DA000E3EE0 /* TableViewController.swift in Sources */,
 				C63500721D31D419000E3EE0 /* MapViewController.swift in Sources */,
+				C6D09EDA1D36D6D9002889F4 /* WebViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

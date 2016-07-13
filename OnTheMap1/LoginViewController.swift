@@ -136,6 +136,18 @@ class LoginViewController: UIViewController {
         
     }
     
+    func getLocations() {
+        
+    }
+    
+    @IBAction func signUp(sender: AnyObject) {
+        
+        let webViewer = storyboard!.instantiateViewControllerWithIdentifier("WebViewController") as! WebViewController
+        presentViewController(webViewer, animated: true, completion: nil)
+        
+    }
+    
+    
 
 }
 
