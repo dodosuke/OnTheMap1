@@ -46,8 +46,7 @@ class LoginViewController: UIViewController {
     
     private func completeLogin() {
         
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.locations = StudentLocation.locationFromResults(self.appDelegate.locationData)
+        debugTextLabel.text = "Login Completed!"
         
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
@@ -59,7 +58,7 @@ class LoginViewController: UIViewController {
     
     func getSessionID() {
         
-        /* TASK: Login, then get a session id */
+        debugTextLabel.text = "Getting sessionID"
         
         /* 1. Set the parameters */
         let methodParameters: [String: String]! = [
@@ -128,7 +127,7 @@ class LoginViewController: UIViewController {
             
             
             /* 6. Use the data! */
-            self.completeLogin()
+            self.getLocations()
         }
         
         /* 7. Start the request */
@@ -137,6 +136,63 @@ class LoginViewController: UIViewController {
     }
     
     func getLocations() {
+        
+        debugTextLabel.text = "Getting location information"
+        
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
+        request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(Constants.OTMParameterValues.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            // if an error occurs, print it and re-enable the UI
+            func displayError(error: String, debugLabelText: String? = nil) {
+                print(error)
+                performUIUpdatesOnMain {
+                    self.setUIEnabled(true)
+                    self.debugTextLabel.text = "Login Failed (Login Step)."
+                }
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            /* 5. Parse the data */
+
+            let parsedResult: AnyObject
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                if let students = parsedResult["results"] as? [[String: AnyObject]] {
+                 
+                    self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    self.appDelegate.locations = StudentLocation.locationFromResults(students)
+                    
+                }
+                
+            } catch {
+                displayError("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            
+            self.completeLogin()
+            
+        }
+        task.resume()
         
     }
     

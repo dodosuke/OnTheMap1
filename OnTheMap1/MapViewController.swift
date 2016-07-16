@@ -36,7 +36,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // data that you can download from parse.
         
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let locations = self.appDelegate.locationData
+        let locations = self.appDelegate.locations
         
         // We will create an MKPointAnnotation for each dictionary in "locations". The
         // point annotations will be stored in this array, and then provided to the map view.
@@ -46,19 +46,19 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         // to create map annotations. This would be more stylish if the dictionaries were being
         // used to create custom structs. Perhaps StudentLocation structs.
         
-        for dictionary in locations {
+        for location in locations! {
             
             // Notice that the float values are being used to create CLLocationDegree values.
             // This is a version of the Double type.
-            let lat = CLLocationDegrees(dictionary["latitude"] as! Double)
-            let long = CLLocationDegrees(dictionary["longitude"] as! Double)
+            let lat = CLLocationDegrees(location.latitude)
+            let long = CLLocationDegrees(location.longtitude)
             
             // The lat and long are used to create a CLLocationCoordinates2D instance.
             let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
             
-            let first = dictionary["firstName"] as! String
-            let last = dictionary["lastName"] as! String
-            let mediaURL = dictionary["mediaURL"] as! String
+            let first = location.firstName
+            let last = location.lastName
+            let mediaURL = location.mediaURL
             
             // Here we create the annotation and set its coordiate, title, and subtitle properties
             let annotation = MKPointAnnotation()
@@ -110,17 +110,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
         }
     }
-    //    func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-    //
-    //        if control == annotationView.rightCalloutAccessoryView {
-    //            let app = UIApplication.sharedApplication()
-    //            app.openURL(NSURL(string: annotationView.annotation.subtitle))
-    //        }
-    //    }
     
-    // MARK: - Sample Data
-    
-    // Some sample data. This is a dictionary that is more or less similar to the
-    // JSON data that you will download from Parse.
     
 }

@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -231,8 +232,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ocL-SL-eZe">
-                        <barButtonItem key="leftBarButtonItem" image="Pin" id="lHd-iI-nfm" userLabel="Pin"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="fNb-gL-INB"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="uKg-I8-s67"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="fNb-gL-INB"/>
+                            <barButtonItem image="Pin" id="lHd-iI-nfm" userLabel="Pin"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="keP-GM-zyu" id="NUx-hc-hGY"/>
@@ -267,8 +271,11 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hnE-On-Kj2">
-                        <barButtonItem key="leftBarButtonItem" image="Pin" id="fsD-j8-zwi" userLabel="Pin"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Txb-i3-hPh"/>
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="N2J-NF-GkI"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="Txb-i3-hPh"/>
+                            <barButtonItem image="Pin" id="fsD-j8-zwi" userLabel="Pin"/>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
