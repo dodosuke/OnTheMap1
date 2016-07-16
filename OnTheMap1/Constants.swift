@@ -21,6 +21,7 @@ struct Constants {
     struct OTMParameterValues {
         static let AppID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        static let SignUpURL = "https://www.google.com/url?q=https://www.udacity.com/account/auth%23!/signup&sa=D&ust=1468337398644000&usg=AFQjCNH1WVWhNmULqphHiOw9QX9FRcBuhA"
     }
     
     struct OTMResponseKeys {

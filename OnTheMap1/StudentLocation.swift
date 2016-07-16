@@ -11,7 +11,7 @@ import Foundation
 struct StudentLocation {
 
     let objectId: String
-//    let uniqueKey: String
+    let uniqueKey: String
     let firstName: String
     let lastName: String
     let mapString: String
@@ -23,7 +23,7 @@ struct StudentLocation {
     
     init(dictionary:[String:AnyObject]){
         objectId = dictionary[Constants.OTMResponseKeys.ObjectID] as! String
-//        uniqueKey = dictionary[Constants.OTMResponseKeys.UniqueKey] as! String
+        uniqueKey = dictionary[Constants.OTMResponseKeys.UniqueKey] as! String
         firstName = dictionary[Constants.OTMResponseKeys.FirstName] as! String
         lastName = dictionary[Constants.OTMResponseKeys.LastName] as! String
         mapString = dictionary[Constants.OTMResponseKeys.MapString] as! String
