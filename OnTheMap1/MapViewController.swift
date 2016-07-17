@@ -111,5 +111,10 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    @IBAction func refreshData(sender: AnyObject) {
+                
+    }
+    
+    
     
 }

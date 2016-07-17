@@ -17,7 +17,6 @@ class LoginViewController: UIViewController {
     
     var appDelegate: AppDelegate!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,19 +42,6 @@ class LoginViewController: UIViewController {
         
     }
     
-    
-    private func completeLogin() {
-        
-        debugTextLabel.text = "Login Completed!"
-        
-        performUIUpdatesOnMain {
-            self.debugTextLabel.text = ""
-            self.setUIEnabled(true)
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("OTMTabBarController") as! UITabBarController
-            self.presentViewController(controller, animated: true, completion: nil)
-        }
-    }
-    
     func getSessionID() {
         
         debugTextLabel.text = "Getting sessionID"
@@ -68,7 +54,7 @@ class LoginViewController: UIViewController {
         ]
         
         /* 2/3. Build the URL, Configure the request */
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
+        let request = NSMutableURLRequest(URL: NSURL(string:Constants.URLs.Session)!)
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -110,15 +96,9 @@ class LoginViewController: UIViewController {
             let parsedResult: AnyObject
             do {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
-                if let sessionData = parsedResult["session"] as? [String:AnyObject] {
-                    if let sessionID = sessionData["id"] as? String {
-                        self.appDelegate.sessionID = sessionID
-                        if let account = parsedResult["account"] as? [String:AnyObject] {
-                            if let userID = account["key"] as? String {
-                                self.appDelegate.userID = Int(userID.stringByTrimmingCharactersInSet(NSCharacterSet.newlineCharacterSet()))
-                            }
-                        }
-                    }
+                if let account = parsedResult["account"] as? [String:AnyObject] {
+                    self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    self.appDelegate.userUniqueKey = account["key"] as? String
                 }
             } catch {
                 displayError("Could not parse the data as JSON: '\(data)'")
@@ -135,11 +115,12 @@ class LoginViewController: UIViewController {
         
     }
     
+    
     func getLocations() {
         
         debugTextLabel.text = "Getting location information"
         
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: Constants.URLs.Locations)!)
         request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
         request.addValue(Constants.OTMParameterValues.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         let session = NSURLSession.sharedSession()
@@ -178,7 +159,7 @@ class LoginViewController: UIViewController {
             do {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                 if let students = parsedResult["results"] as? [[String: AnyObject]] {
-                 
+            
                     self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
                     self.appDelegate.locations = StudentLocation.locationFromResults(students)
                     
@@ -189,16 +170,88 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            self.completeLogin()
+            self.getUserInfo()
             
         }
         task.resume()
         
     }
     
+    func getUserInfo() {
+
+        let request = NSMutableURLRequest(URL: NSURL(string:Constants.URLs.Users + appDelegate.userUniqueKey!)!)
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            // if an error occurs, print it and re-enable the UI
+            func displayError(error: String, debugLabelText: String? = nil) {
+                print(error)
+                performUIUpdatesOnMain {
+                    self.setUIEnabled(true)
+                    self.debugTextLabel.text = "Login Failed (Login Step)."
+                }
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            /* 5. Parse the data */
+            
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
+            let parsedResult: AnyObject
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
+                if let user = parsedResult["user"] as? [String: AnyObject] {
+                    self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    self.appDelegate.userFirstName = user["first_name"] as? String
+                    self.appDelegate.userLastName = user["last_name"] as? String
+                    self.appDelegate.userMediaURL = user["linkedin_url"] as? String
+                }
+                
+                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
+                
+            } catch {
+                displayError("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            
+            self.completeLogin()
+
+        }
+        task.resume()
+    
+    }
+    
+    private func completeLogin() {
+        
+        debugTextLabel.text = "Login Completed!"
+        
+        performUIUpdatesOnMain {
+            self.debugTextLabel.text = ""
+            self.setUIEnabled(true)
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("OTMTabBarController") as! UITabBarController
+            self.presentViewController(controller, animated: true, completion: nil)
+        }
+    }
+    
+    
     @IBAction func signUp(sender: AnyObject) {
         
-        let url = NSURL(string: Constants.OTMParameterValues.SignUpURL)
+        let url = NSURL(string: Constants.URLs.SignUp)
         if UIApplication.sharedApplication().canOpenURL(url!){
             UIApplication.sharedApplication().openURL(url!)
         }

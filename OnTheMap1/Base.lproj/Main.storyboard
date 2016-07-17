@@ -4,7 +4,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -19,44 +18,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p3W-Sy-5IR">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="p3W-Sy-5IR">
                                 <rect key="frame" x="20" y="28" width="560" height="552"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On The Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o10-Nt-9gq">
-                                        <rect key="frame" x="0.0" y="0.0" width="560" height="166"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="560" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="166" id="Ru9-Zr-fjr"/>
+                                            <constraint firstAttribute="height" constant="100" id="Ru9-Zr-fjr"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="c5M-a2-s71">
-                                        <rect key="frame" x="0.0" y="166" width="560" height="86"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="c5M-a2-s71">
+                                        <rect key="frame" x="0.0" y="202" width="560" height="149"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Login with Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qV-uF-hLD">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="0.0"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" misplaced="YES" text="Login with Udacity" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8qV-uF-hLD">
+                                                <rect key="frame" x="0.0" y="0.0" width="560" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fzm-iU-jiO" userLabel="Username Text Field">
-                                                <rect key="frame" x="0.0" y="0.0" width="560" height="22"/>
+                                                <rect key="frame" x="0.0" y="31" width="560" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="RQL-A8-Pr8"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwh-5V-5sl">
-                                                <rect key="frame" x="0.0" y="22" width="560" height="22"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zwh-5V-5sl">
+                                                <rect key="frame" x="0.0" y="63" width="560" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="Xcg-1r-0Jt"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7h-JY-xi6">
-                                                <rect key="frame" x="0.0" y="44" width="560" height="22"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a7h-JY-xi6">
+                                                <rect key="frame" x="0.0" y="95" width="560" height="22"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="22" id="dWi-TG-M6s"/>
                                                 </constraints>
@@ -66,8 +65,11 @@
                                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rG9-UD-f9k"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6L-Q7-vhZ" userLabel="SignUp Button">
-                                                <rect key="frame" x="0.0" y="66" width="560" height="20"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P6L-Q7-vhZ" userLabel="SignUp Button">
+                                                <rect key="frame" x="0.0" y="127" width="560" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="gLD-lc-Q5O"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                 <state key="normal" title="Don't have an account? Sign up!"/>
                                                 <connections>
@@ -77,9 +79,9 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tj9-4x-d2n">
-                                        <rect key="frame" x="0.0" y="252" width="560" height="300"/>
+                                        <rect key="frame" x="0.0" y="452" width="560" height="100"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="300" id="xBi-o2-2Qi"/>
+                                            <constraint firstAttribute="height" constant="100" id="yB0-Yg-tgD"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -94,6 +96,7 @@
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="p3W-Sy-5IR" secondAttribute="bottom" constant="20" id="OmI-0q-LB1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="p3W-Sy-5IR" secondAttribute="trailing" id="as4-J7-sNX"/>
                             <constraint firstAttribute="leadingMargin" secondItem="p3W-Sy-5IR" secondAttribute="leading" id="syC-tR-kDw"/>
+                            <constraint firstItem="p3W-Sy-5IR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="tma-fc-ga5"/>
                         </constraints>
                     </view>
                     <connections>
@@ -187,11 +190,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ocL-SL-eZe">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="uKg-I8-s67"/>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="fNb-gL-INB"/>
-                            <barButtonItem image="Pin" id="lHd-iI-nfm" userLabel="Pin"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" image="Pin" id="lHd-iI-nfm" userLabel="Pin"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="fNb-gL-INB">
+                            <connections>
+                                <action selector="refreshData:" destination="kwR-ZC-nR2" id="7XY-BS-uaT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="keP-GM-zyu" id="NUx-hc-hGY"/>
@@ -226,11 +230,8 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hnE-On-Kj2">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="N2J-NF-GkI"/>
-                        <rightBarButtonItems>
-                            <barButtonItem systemItem="refresh" id="Txb-i3-hPh"/>
-                            <barButtonItem image="Pin" id="fsD-j8-zwi" userLabel="Pin"/>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" image="Pin" id="fsD-j8-zwi" userLabel="Pin"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Txb-i3-hPh"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>

@@ -10,6 +10,13 @@ import Foundation
 
 struct Constants {
     
+    struct URLs {
+        static let Session = "https://www.udacity.com/api/session"
+        static let Locations = "https://api.parse.com/1/classes/StudentLocation"
+        static let Users = "https://www.udacity.com/api/users/"
+        static let SignUp = "https://www.google.com/url?q=https://www.udacity.com/account/auth%23!/signup&sa=D&ust=1468337398644000&usg=AFQjCNH1WVWhNmULqphHiOw9QX9FRcBuhA"
+    }
+    
     struct OTMParameterKeys {
         static let AppID = "app_id"
         static let ApiKey = "api_key"
@@ -21,7 +28,6 @@ struct Constants {
     struct OTMParameterValues {
         static let AppID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
-        static let SignUpURL = "https://www.google.com/url?q=https://www.udacity.com/account/auth%23!/signup&sa=D&ust=1468337398644000&usg=AFQjCNH1WVWhNmULqphHiOw9QX9FRcBuhA"
     }
     
     struct OTMResponseKeys {
@@ -36,6 +42,5 @@ struct Constants {
         static let CreatedDate = "createdAt"
         static let UpdatedDate = "updatedAt"
     }
-    
     
 }

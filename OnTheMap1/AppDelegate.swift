@@ -13,10 +13,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    var requestToken: String? = nil
-    var sessionID: String? = nil
-    var userID: Int? = nil
     var locations: [StudentLocation]?
+    
+    var userUniqueKey: String? = nil
+    var userFirstName: String? = nil
+    var userLastName: String? = nil
+    var userMediaURL: String? = nil
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.

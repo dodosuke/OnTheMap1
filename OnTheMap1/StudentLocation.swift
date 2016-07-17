@@ -6,7 +6,7 @@
 //  Copyright © 2016 kishidak. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct StudentLocation {
 
@@ -44,6 +44,7 @@ struct StudentLocation {
     
         return locations
     }
+    
     
 }
 
