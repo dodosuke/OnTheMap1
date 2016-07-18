@@ -111,6 +111,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
+    @IBAction func PostInfo(sender: AnyObject) {
+        
+        let InfoPoster = storyboard!.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
+        presentViewController(InfoPoster, animated: true, completion: nil)
+    
+    }
+    
     @IBAction func refreshData(sender: AnyObject) {
                 
     }

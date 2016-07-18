@@ -33,25 +33,27 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TableViewCell", forIndexPath: indexPath)
         let location = locations[indexPath.row]
         
-        // Set the name and image
         cell.textLabel?.text = (location.firstName) + " " + (location.lastName)
         
         return cell
     }
     
-//    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-//        return true
-//    }
+    @IBAction func PostInfo(sender: AnyObject) {
+        
+        let InfoPoster = storyboard!.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
+        presentViewController(InfoPoster, animated: true, completion: nil)
     
+    
+    }
 
     
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        
-//        let object: AnyObject = storyboard!.instantiateViewControllerWithIdentifier("MemeDetailViewController")
-//        let detailController = object as! MemeDetailViewController
-//        detailController.index = indexPath.row
-//        navigationController!.pushViewController(detailController, animated: true)
-//    }
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let url = NSURL(string: locations[indexPath.row].mediaURL)
+        if UIApplication.sharedApplication().canOpenURL(url!){
+            UIApplication.sharedApplication().openURL(url!)
+        }
     
+    }
     
 }

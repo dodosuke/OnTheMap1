@@ -222,8 +222,6 @@ class LoginViewController: UIViewController {
                     self.appDelegate.userMediaURL = user["linkedin_url"] as? String
                 }
                 
-                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
-                
             } catch {
                 displayError("Could not parse the data as JSON: '\(data)'")
                 return
@@ -258,8 +256,6 @@ class LoginViewController: UIViewController {
         
     }
     
-    
-
 }
 
 extension LoginViewController {
