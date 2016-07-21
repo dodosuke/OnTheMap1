@@ -240,7 +240,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Wy-Fu-969">
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Wy-Fu-969">
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="4AP-dH-WME">
@@ -253,7 +253,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="BBA-a0-3SO">
+                            <searchBar contentMode="redraw" placeholder="Enter Your Location" translatesAutoresizingMaskIntoConstraints="NO" id="BBA-a0-3SO">
                                 <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -263,6 +263,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="4Wy-Fu-969" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="4G5-72-9TX"/>
                             <constraint firstItem="BBA-a0-3SO" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="Eds-AO-rXK"/>
                             <constraint firstItem="mmZ-n9-guv" firstAttribute="top" secondItem="Y0T-Mt-xIx" secondAttribute="bottom" id="UDi-VQ-sEA"/>
                             <constraint firstItem="Y0T-Mt-xIx" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="Ydz-01-WiK"/>
@@ -270,9 +271,16 @@
                             <constraint firstItem="BBA-a0-3SO" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="faF-fZ-3Dk"/>
                             <constraint firstItem="BBA-a0-3SO" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="52" id="juh-5Z-rnl"/>
                             <constraint firstItem="Y0T-Mt-xIx" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="96" id="oNF-qs-tBl"/>
+                            <constraint firstItem="4Wy-Fu-969" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="8" id="uis-Mi-Hh7"/>
+                            <constraint firstItem="4Wy-Fu-969" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="xzL-r2-5pg"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="j9C-pw-Qxp"/>
+                    <connections>
+                        <outlet property="destSearchBar" destination="BBA-a0-3SO" id="4dy-gm-i8v"/>
+                        <outlet property="mapView" destination="Y0T-Mt-xIx" id="sXW-XB-RN5"/>
+                        <outlet property="nextStep" destination="0v1-T2-Dvv" id="heK-dC-WIR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iuc-YY-BIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
