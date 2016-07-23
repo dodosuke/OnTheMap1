@@ -249,7 +249,11 @@
                                                 <action selector="cancel:" destination="YFJ-7D-ild" id="bNk-0b-njz"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Next" id="0v1-T2-Dvv"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Next" id="0v1-T2-Dvv">
+                                            <connections>
+                                                <action selector="nextStepForLinkEditing:" destination="YFJ-7D-ild" id="8Hy-Zn-MKf"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -285,6 +289,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iuc-YY-BIK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="281" y="-69"/>
+        </scene>
+        <!--Link Edit View Controller-->
+        <scene sceneID="Xpa-kA-afJ">
+            <objects>
+                <viewController storyboardIdentifier="LinkEditViewController" modalTransitionStyle="crossDissolve" id="TUv-vY-nGb" customClass="LinkEditViewController" customModule="OnTheMap1" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Xk4-EI-fUr"/>
+                        <viewControllerLayoutGuide type="bottom" id="ooV-Rj-BFx"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vkm-N2-8Xc">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09O-kI-M16">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <navigationItem id="84R-jN-5XR">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="A7o-Z1-i3p">
+                                            <connections>
+                                                <action selector="backToMapSearch:" destination="TUv-vY-nGb" id="xAI-CF-aXH"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Submit" id="PcT-JK-abJ">
+                                            <connections>
+                                                <action selector="postInfo:" destination="TUv-vY-nGb" id="p1h-jC-XwI"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Link to Share HERE" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0b-k2-VDf">
+                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8zU-Vz-5jw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="09O-kI-M16" firstAttribute="top" secondItem="Xk4-EI-fUr" secondAttribute="bottom" constant="8" id="FsP-X9-M0L"/>
+                            <constraint firstItem="09O-kI-M16" firstAttribute="centerX" secondItem="vkm-N2-8Xc" secondAttribute="centerX" id="GK3-0D-0H8"/>
+                            <constraint firstItem="u0b-k2-VDf" firstAttribute="centerY" secondItem="vkm-N2-8Xc" secondAttribute="centerY" id="Wa4-2P-wWZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="u0b-k2-VDf" secondAttribute="trailing" id="c0T-ER-zW6"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="u0b-k2-VDf" secondAttribute="leading" id="n30-eW-aVC"/>
+                            <constraint firstItem="09O-kI-M16" firstAttribute="width" secondItem="vkm-N2-8Xc" secondAttribute="width" id="zvt-c1-60a"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="linkTextField" destination="u0b-k2-VDf" id="Zf0-HV-6dD"/>
+                        <outlet property="submitButton" destination="PcT-JK-abJ" id="efI-SC-mHh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8pO-Vz-DpG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1018" y="-69"/>
         </scene>
     </scenes>
     <resources>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var debugTextLabel: UILabel!
@@ -21,6 +21,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -98,7 +100,7 @@ class LoginViewController: UIViewController {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
                 if let account = parsedResult["account"] as? [String:AnyObject] {
                     self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    self.appDelegate.userUniqueKey = account["key"] as? String
+                    self.appDelegate.userUniqueKey = (account["key"] as? String)!
                 }
             } catch {
                 displayError("Could not parse the data as JSON: '\(data)'")
@@ -179,7 +181,8 @@ class LoginViewController: UIViewController {
     
     func getUserInfo() {
 
-        let request = NSMutableURLRequest(URL: NSURL(string:Constants.URLs.Users + appDelegate.userUniqueKey!)!)
+        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        let request = NSMutableURLRequest(URL: NSURL(string: Constants.URLs.Users + appDelegate.userUniqueKey!)!)
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             // if an error occurs, print it and re-enable the UI
@@ -217,9 +220,9 @@ class LoginViewController: UIViewController {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
                 if let user = parsedResult["user"] as? [String: AnyObject] {
                     self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    self.appDelegate.userFirstName = user["first_name"] as? String
-                    self.appDelegate.userLastName = user["last_name"] as? String
-                    self.appDelegate.userMediaURL = user["linkedin_url"] as? String
+                    self.appDelegate.userFirstName = (user["first_name"] as? String)!
+                    self.appDelegate.userLastName = (user["last_name"] as? String)!
+                    self.appDelegate.userMapString? = (user["linkedin_url"] as? String)!
                 }
                 
             } catch {
@@ -254,6 +257,11 @@ class LoginViewController: UIViewController {
             UIApplication.sharedApplication().openURL(url!)
         }
         
+    }
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
 }

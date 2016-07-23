@@ -15,13 +15,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var locations: [StudentLocation]?
     
+    var userObjectID:String? = nil
     var userUniqueKey: String? = nil
     var userFirstName: String? = nil
     var userLastName: String? = nil
     var userMediaURL: String? = nil
+    var userMapString: String? = nil
+    var userLat: Double? = nil
+    var userLong: Double? = nil
+    var alreadyExist: Bool = false
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
         return true
     }
 

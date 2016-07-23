@@ -9,25 +9,15 @@
 import UIKit
 import MapKit
 
-/**
- * This view controller demonstrates the objects involved in displaying pins on a map.
- *
- * The map is a MKMapView.
- * The pins are represented by MKPointAnnotation instances.
- *
- * The view controller conforms to the MKMapViewDelegate so that it can receive a method
- * invocation when a pin annotation is tapped. It accomplishes this using two delegate
- * methods: one to put a small "info" button on the right side of each pin, and one to
- * respond when the "info" button is tapped.
- */
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegate {
     
     // The map. See the setup in the Storyboard file. Note particularly that the view controller
     // is set up as the map view's delegate.
     @IBOutlet weak var mapView: MKMapView!
     
     var appDelegate: AppDelegate!
+    var loginViewController: LoginViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,13 +103,146 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     @IBAction func PostInfo(sender: AnyObject) {
         
+        let url = NSURL(string: Constants.URLs.LocationA + self.appDelegate.userUniqueKey! + Constants.URLs.LocationB)
+        let request = NSMutableURLRequest(URL: url!)
+        request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(Constants.OTMParameterValues.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            func displayError(error: String) {
+                print(error)
+                
+                let alert:UIAlertController = UIAlertController(title:"Alert", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                self.presentViewController(alert, animated: true, completion: nil)
+                let okAction:UIAlertAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.Cancel, handler:{(action:UIAlertAction!) -> Void in })
+                alert.addAction(okAction)
+                self.navigationController?.pushViewController(alert, animated: true)
+                
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            /* 5. Parse the data */
+            
+            let parsedResult: AnyObject
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                if let results = parsedResult["results"] as? [[String:AnyObject]] {
+                    if results.count == 0 {
+                        
+                        self.presentInfoPoster()
+                        
+                    } else {
+                        
+                        self.appDelegate.userObjectID = results[0]["objectId"] as? String
+                        self.appDelegate.alreadyExist = true
+                        self.overwriteInfo()
+                        
+                    }
+                }
+            } catch {
+                displayError("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            
+            
+        }
+        task.resume()
+        
+    }
+    
+    func overwriteInfo() {
+        
+        let alert:UIAlertController = UIAlertController(title:"Alert", message: "You have already posted a student location. Would you like to overwrite?", preferredStyle: UIAlertControllerStyle.Alert)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        let overwriteAction:UIAlertAction = UIAlertAction(title: "Overwrite", style: UIAlertActionStyle.Default, handler:{(action:UIAlertAction!) -> Void in self.presentInfoPoster()})
+        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(action:UIAlertAction!) -> Void in})
+
+        alert.addAction(overwriteAction)
+        alert.addAction(cancelAction)
+       
+        self.navigationController?.pushViewController(alert, animated: true)
+
+        
+    }
+    
+    func presentInfoPoster() {
+        
         let InfoPoster = storyboard!.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
         presentViewController(InfoPoster, animated: true, completion: nil)
-    
+        
     }
     
     @IBAction func refreshData(sender: AnyObject) {
-                
+        
+//        let request = NSMutableURLRequest(URL: NSURL(string: Constants.URLs.Locations)!)
+//        request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+//        request.addValue(Constants.OTMParameterValues.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+//        let session = NSURLSession.sharedSession()
+//        let task = session.dataTaskWithRequest(request) { data, response, error in
+//            
+//            // if an error occurs, print it and re-enable the UI
+//            func displayError(error: String, debugLabelText: String? = nil) {
+//                print(error)
+//            }
+//            
+//            /* GUARD: Was there an error? */
+//            guard (error == nil) else {
+//                displayError("There was an error with your request: \(error)")
+//                return
+//            }
+//            
+//            /* GUARD: Did we get a successful 2XX response? */
+//            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+//                displayError("Your request returned a status code other than 2xx!")
+//                return
+//            }
+//            
+//            /* GUARD: Was there any data returned? */
+//            guard let data = data else {
+//                displayError("No data was returned by the request!")
+//                return
+//            }
+//            
+//            /* 5. Parse the data */
+//            
+//            let parsedResult: AnyObject
+//            do {
+//                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+//                if let students = parsedResult["results"] as? [[String: AnyObject]] {
+//                    
+//                    self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                    self.appDelegate.locations = StudentLocation.locationFromResults(students)
+//                    
+//                }
+//                
+//            } catch {
+//                displayError("Could not parse the data as JSON: '\(data)'")
+//                return
+//            }
+//            
+//            
+//        }
+//        task.resume()
+        
     }
     
     

@@ -13,7 +13,6 @@ class TableViewController: UITableViewController {
     
     var locations: [StudentLocation]!{
         get{return (UIApplication.sharedApplication().delegate as! AppDelegate).locations}
-        set{}
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -38,22 +37,21 @@ class TableViewController: UITableViewController {
         return cell
     }
     
-    @IBAction func PostInfo(sender: AnyObject) {
-        
-        let InfoPoster = storyboard!.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
-        presentViewController(InfoPoster, animated: true, completion: nil)
-    
-    
-    }
-
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let url = NSURL(string: locations[indexPath.row].mediaURL)
         if UIApplication.sharedApplication().canOpenURL(url!){
             UIApplication.sharedApplication().openURL(url!)
         }
+        
+    }
+    
+    @IBAction func PostInfo(sender: AnyObject) {
+        
     
     }
+
+    
+
     
 }

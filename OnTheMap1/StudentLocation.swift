@@ -10,16 +10,16 @@ import UIKit
 
 struct StudentLocation {
 
-    let objectId: String
-    let uniqueKey: String
-    let firstName: String
-    let lastName: String
-    let mapString: String
-    let mediaURL: String
-    let latitude: Double
-    let longtitude: Double
-    let createdAt: String
-    let updatedAt: String
+    var objectId: String
+    var uniqueKey: String
+    var firstName: String
+    var lastName: String
+    var mapString: String
+    var mediaURL: String
+    var latitude: Double
+    var longtitude: Double
+    var createdAt: String
+    var updatedAt: String
     
     init(dictionary:[String:AnyObject]){
         objectId = dictionary[Constants.OTMResponseKeys.ObjectID] as! String

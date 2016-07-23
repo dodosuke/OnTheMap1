@@ -17,6 +17,7 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
     
     var locationManager: CLLocationManager!
     var destLocation: CLLocationCoordinate2D!
+    var appDelegate: AppDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +44,11 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
                     self.locationManager.startUpdatingLocation()
                     self.showOnMap()
                     self.nextStep.enabled = true
+                    
+                    self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                    self.appDelegate.userMapString = self.destSearchBar.text!
+                    self.appDelegate.userLat = self.destLocation.latitude
+                    self.appDelegate.userLong = self.destLocation.longitude
                 }
             } else {
                 self.errorPopUp()
@@ -52,7 +58,7 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
     
     func showOnMap() {
         
-        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.10, 0.10);
+        let span:MKCoordinateSpan = MKCoordinateSpanMake(0.05, 0.05);
         let center:CLLocationCoordinate2D = destLocation
         let region:MKCoordinateRegion = MKCoordinateRegionMake(center, span)
         mapView.setRegion(mapView.regionThatFits(region), animated:true)
@@ -62,6 +68,14 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
     @IBAction func cancel(sender: AnyObject) {
         
         dismissViewControllerAnimated(true, completion: nil)
+        
+    }
+    
+    
+    @IBAction func nextStepForLinkEditing(sender: AnyObject) {
+        
+        let InfoPoster = storyboard!.instantiateViewControllerWithIdentifier("LinkEditViewController") as! LinkEditViewController
+        presentViewController(InfoPoster, animated: true, completion: nil)
         
     }
     
