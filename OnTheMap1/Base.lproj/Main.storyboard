@@ -220,7 +220,11 @@
                                 <action selector="PostInfo:" destination="Fc2-hd-ljb" id="Kh0-0K-fLl"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Txb-i3-hPh"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="Txb-i3-hPh">
+                            <connections>
+                                <action selector="refreshData:" destination="Fc2-hd-ljb" id="E1w-Jh-gsV"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                 </tableViewController>
@@ -241,9 +245,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Wy-Fu-969">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="-16" width="600" height="44"/>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" placeholder="Enter Your Location" translatesAutoresizingMaskIntoConstraints="NO" id="BBA-a0-3SO">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Y0T-Mt-xIx">
+                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                            </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1e1-xk-t8E">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
-                                    <navigationItem id="4AP-dH-WME">
+                                    <navigationItem id="3BC-b4-huR">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="E1s-WA-RXG">
                                             <connections>
                                                 <action selector="cancel:" destination="YFJ-7D-ild" id="bNk-0b-njz"/>
@@ -257,29 +271,24 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <searchBar contentMode="redraw" placeholder="Enter Your Location" translatesAutoresizingMaskIntoConstraints="NO" id="BBA-a0-3SO">
-                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Y0T-Mt-xIx">
-                                <rect key="frame" x="0.0" y="116" width="600" height="484"/>
-                            </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="4Wy-Fu-969" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="4G5-72-9TX"/>
+                            <constraint firstItem="1e1-xk-t8E" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="CKB-EU-hGm"/>
+                            <constraint firstItem="1e1-xk-t8E" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" id="Drp-tq-iR5"/>
                             <constraint firstItem="BBA-a0-3SO" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="Eds-AO-rXK"/>
                             <constraint firstItem="mmZ-n9-guv" firstAttribute="top" secondItem="Y0T-Mt-xIx" secondAttribute="bottom" id="UDi-VQ-sEA"/>
                             <constraint firstItem="Y0T-Mt-xIx" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="Ydz-01-WiK"/>
+                            <constraint firstItem="1e1-xk-t8E" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="cp0-jh-W9y"/>
                             <constraint firstItem="Y0T-Mt-xIx" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="e8B-32-WrK"/>
                             <constraint firstItem="BBA-a0-3SO" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="faF-fZ-3Dk"/>
-                            <constraint firstItem="BBA-a0-3SO" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="52" id="juh-5Z-rnl"/>
-                            <constraint firstItem="Y0T-Mt-xIx" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="96" id="oNF-qs-tBl"/>
-                            <constraint firstItem="4Wy-Fu-969" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="8" id="uis-Mi-Hh7"/>
+                            <constraint firstItem="BBA-a0-3SO" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="44" id="juh-5Z-rnl"/>
+                            <constraint firstItem="Y0T-Mt-xIx" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="88" id="oNF-qs-tBl"/>
+                            <constraint firstItem="4Wy-Fu-969" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" constant="-36" id="uis-Mi-Hh7"/>
                             <constraint firstItem="4Wy-Fu-969" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="xzL-r2-5pg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="j9C-pw-Qxp"/>
                     <connections>
                         <outlet property="destSearchBar" destination="BBA-a0-3SO" id="4dy-gm-i8v"/>
                         <outlet property="mapView" destination="Y0T-Mt-xIx" id="sXW-XB-RN5"/>
@@ -302,8 +311,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Link to Share HERE" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0b-k2-VDf">
+                                <rect key="frame" x="20" y="285" width="560" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8zU-Vz-5jw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09O-kI-M16">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
                                 <items>
                                     <navigationItem id="84R-jN-5XR">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="A7o-Z1-i3p">
@@ -319,18 +336,10 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a Link to Share HERE" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u0b-k2-VDf">
-                                <rect key="frame" x="20" y="285" width="560" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="8zU-Vz-5jw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="09O-kI-M16" firstAttribute="top" secondItem="Xk4-EI-fUr" secondAttribute="bottom" constant="8" id="FsP-X9-M0L"/>
+                            <constraint firstItem="09O-kI-M16" firstAttribute="top" secondItem="Xk4-EI-fUr" secondAttribute="bottom" id="FsP-X9-M0L"/>
                             <constraint firstItem="09O-kI-M16" firstAttribute="centerX" secondItem="vkm-N2-8Xc" secondAttribute="centerX" id="GK3-0D-0H8"/>
                             <constraint firstItem="u0b-k2-VDf" firstAttribute="centerY" secondItem="vkm-N2-8Xc" secondAttribute="centerY" id="Wa4-2P-wWZ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="u0b-k2-VDf" secondAttribute="trailing" id="c0T-ER-zW6"/>

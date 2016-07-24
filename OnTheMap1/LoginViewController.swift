@@ -46,13 +46,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func getSessionID() {
         
-        debugTextLabel.text = "Getting sessionID"
+        dispatch_async(dispatch_get_main_queue()){
+            self.debugTextLabel.text = "Getting sessionID"
+        }
         
         /* 1. Set the parameters */
         let methodParameters: [String: String]! = [
             Constants.OTMParameterKeys.ApiKey: Constants.OTMParameterValues.ApiKey,
-            Constants.OTMParameterKeys.Username: "kishidak@tcd.ie",
-            Constants.OTMParameterKeys.Password: "xr5YAC2cUDC"
+            Constants.OTMParameterKeys.Username: usernameTextField.text!,
+            Constants.OTMParameterKeys.Password: passwordTextField.text!
         ]
         
         /* 2/3. Build the URL, Configure the request */
@@ -120,7 +122,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func getLocations() {
         
-        debugTextLabel.text = "Getting location information"
+        dispatch_async(dispatch_get_main_queue()){
+            self.debugTextLabel.text = "Getting locations from Parse"
+        }
         
         let request = NSMutableURLRequest(URL: NSURL(string: Constants.URLs.Locations)!)
         request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
@@ -172,14 +176,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            self.getUserInfo()
+            self.getUserInfoFromUdacity()
             
         }
         task.resume()
         
     }
     
-    func getUserInfo() {
+    func getUserInfoFromUdacity() {
+        
+        dispatch_async(dispatch_get_main_queue()){
+            self.debugTextLabel.text = "Getting Your Information from Udacity"
+        }
 
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let request = NSMutableURLRequest(URL: NSURL(string: Constants.URLs.Users + appDelegate.userUniqueKey!)!)
@@ -230,16 +238,82 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             
-            self.completeLogin()
+            self.getUserInfoFromParse()
 
         }
         task.resume()
     
     }
     
+    func getUserInfoFromParse() {
+        
+        dispatch_async(dispatch_get_main_queue()){
+            self.debugTextLabel.text = "Getting Your Information from Parse"
+        }
+        
+        let url = NSURL(string: Constants.URLs.LocationA + self.appDelegate.userUniqueKey! + Constants.URLs.LocationB)
+        let request = NSMutableURLRequest(URL: url!)
+        request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(Constants.OTMParameterValues.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            func displayError(error: String) {
+                print(error)
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                displayError("There was an error with your request: \(error)")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            /* 5. Parse the data */
+            
+            let parsedResult: AnyObject
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                if let results = parsedResult["results"] as? [[String:AnyObject]] {
+                    if results.count == 0 {
+                        
+                        self.appDelegate.alreadyExist = false
+                        
+                    } else {
+                        
+                        self.appDelegate.userObjectID = results[0]["objectId"] as? String
+                        self.appDelegate.alreadyExist = true
+                        
+                    }
+                }
+            } catch {
+                displayError("Could not parse the data as JSON: '\(data)'")
+                return
+            }
+            
+            self.completeLogin()
+            
+        }
+        task.resume()
+        
+    }
+    
     private func completeLogin() {
         
-        debugTextLabel.text = "Login Completed!"
+        dispatch_async(dispatch_get_main_queue()){
+            self.debugTextLabel.text = "Login Completed"
+        }
         
         performUIUpdatesOnMain {
             self.debugTextLabel.text = ""
@@ -261,6 +335,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+
         return true
     }
     
