@@ -19,14 +19,6 @@ struct Constants {
         static let LocationB = "%22%7D"
     }
     
-    struct OTMParameterKeys {
-        static let AppID = "app_id"
-        static let ApiKey = "api_key"
-        static let Username = "username"
-        static let Password = "password"
-    }
-    
-    
     struct OTMParameterValues {
         static let AppID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
@@ -43,6 +35,12 @@ struct Constants {
         static let Longtitude = "longitude"
         static let CreatedDate = "createdAt"
         static let UpdatedDate = "updatedAt"
+    }
+    
+    enum Method {
+        case GET
+        case POST
+        case PUT
     }
     
 }
