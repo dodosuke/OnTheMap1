@@ -41,6 +41,7 @@ struct Constants {
         case GET
         case POST
         case PUT
+        case DELETE
     }
     
 }

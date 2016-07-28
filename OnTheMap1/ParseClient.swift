@@ -12,14 +12,14 @@ class ParseClient: NSObject {
     
     var appDelegate: AppDelegate!
     
-    func getLocations(url: NSURL!, method: Constants.Method, completionHandlerForLocations: (success: Bool, errorString: String?) -> Void) {
+    func getLocations(url: NSURL!, method: Constants.Method, completionHandlerForParse: (success: Bool, errorString: String?) -> Void) {
 
         let request = NSMutableURLRequest(URL: url!)
         
         switch method {
-        case .GET: break
         case .POST: request.HTTPMethod = "POST"
         case .PUT: request.HTTPMethod = "PUT"
+        default: break
         }
         
         request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
@@ -39,7 +39,7 @@ class ParseClient: NSObject {
             // if an error occurs, print it and re-enable the UI
             func sendError(error: String, debugLabelText: String? = nil) {
                 print(error)
-                completionHandlerForLocations(success: false, errorString: error)
+                completionHandlerForParse(success: false, errorString: error)
             }
             
             /* GUARD: Was there an error? */
@@ -94,7 +94,7 @@ class ParseClient: NSObject {
                 break
             }
             
-            completionHandlerForLocations(success: true, errorString: nil)
+            completionHandlerForParse(success: true, errorString: nil)
             
         }
         task.resume()
@@ -104,7 +104,6 @@ class ParseClient: NSObject {
     
     private func userDataToJson() -> String {
         
-        var postinginfo:String = ""
         let uniqueKey:String = "{\"uniqueKey\": \"" + appDelegate.userUniqueKey!
         let firstName:String = "\", \"firstName\": \"" + appDelegate.userFirstName!
         let lastName:String = "\", \"lastName\": \"" + appDelegate.userLastName!
@@ -112,7 +111,7 @@ class ParseClient: NSObject {
         let mediaURL: String = "\", \"mediaURL\": \"" + appDelegate.userMediaURL!
         let lat: String = "\",\"latitude\": " + String(appDelegate.userLat!)
         let long: String = ", \"longitude\": " + String(appDelegate.userLong!) + "}"
-        postinginfo = uniqueKey + firstName + lastName + mapString + mediaURL + lat + long
+        let postinginfo = uniqueKey + firstName + lastName + mapString + mediaURL + lat + long
         
         return postinginfo
     }

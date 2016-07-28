@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C60E96731D48DFB50085925B /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60E96721D48DFB50085925B /* UdacityClient.swift */; };
 		C60EDEEA1D40CD6D0045C3BE /* LinkEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EDEE91D40CD6D0045C3BE /* LinkEditViewController.swift */; };
 		C60EDEEC1D44F1190045C3BE /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = C60EDEEB1D44F1190045C3BE /* ParseClient.swift */; };
 		C635006E1D30F1DA000E3EE0 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C635006D1D30F1DA000E3EE0 /* TableViewController.swift */; };
@@ -18,11 +19,13 @@
 		C64F1C261D252F1500222112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C64F1C241D252F1500222112 /* LaunchScreen.storyboard */; };
 		C64F1C311D26062E00222112 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C301D26062E00222112 /* Constants.swift */; };
 		C64F1C351D2DB34C00222112 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C64F1C341D2DB34C00222112 /* GCDBlackBox.swift */; };
+		C65747331D4A1F2100DFE17D /* OTMConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = C65747321D4A1F2100DFE17D /* OTMConfig.swift */; };
 		C6D09ED81D351D10002889F4 /* StudentLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D09ED71D351D10002889F4 /* StudentLocation.swift */; };
 		C6F43A3C1D3C31E50018A6AC /* InfoPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6F43A3B1D3C31E50018A6AC /* InfoPostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C60E96721D48DFB50085925B /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
 		C60EDEE91D40CD6D0045C3BE /* LinkEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkEditViewController.swift; sourceTree = "<group>"; };
 		C60EDEEB1D44F1190045C3BE /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		C635006D1D30F1DA000E3EE0 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +39,7 @@
 		C64F1C271D252F1500222112 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C64F1C301D26062E00222112 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C64F1C341D2DB34C00222112 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		C65747321D4A1F2100DFE17D /* OTMConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTMConfig.swift; sourceTree = "<group>"; };
 		C6D09ED71D351D10002889F4 /* StudentLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentLocation.swift; sourceTree = "<group>"; };
 		C6F43A3B1D3C31E50018A6AC /* InfoPostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +100,8 @@
 				C64F1C301D26062E00222112 /* Constants.swift */,
 				C6D09ED71D351D10002889F4 /* StudentLocation.swift */,
 				C60EDEEB1D44F1190045C3BE /* ParseClient.swift */,
+				C60E96721D48DFB50085925B /* UdacityClient.swift */,
+				C65747321D4A1F2100DFE17D /* OTMConfig.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -187,6 +193,8 @@
 				C6F43A3C1D3C31E50018A6AC /* InfoPostViewController.swift in Sources */,
 				C64F1C1E1D252F1500222112 /* LoginViewController.swift in Sources */,
 				C64F1C1C1D252F1500222112 /* AppDelegate.swift in Sources */,
+				C60E96731D48DFB50085925B /* UdacityClient.swift in Sources */,
+				C65747331D4A1F2100DFE17D /* OTMConfig.swift in Sources */,
 				C6D09ED81D351D10002889F4 /* StudentLocation.swift in Sources */,
 				C64F1C311D26062E00222112 /* Constants.swift in Sources */,
 				C64F1C351D2DB34C00222112 /* GCDBlackBox.swift in Sources */,

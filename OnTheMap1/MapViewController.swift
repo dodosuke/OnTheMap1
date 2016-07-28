@@ -94,6 +94,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
         }
     }
     
+    @IBAction func logOut(sender: AnyObject) {
+        
+        let url = NSURL(string: Constants.URLs.Session)!
+        
+        UdacityClient.sharedInstance().udacityLogIn(url, method: .DELETE, userId: "", userPW: "") {(success, errorString) in
+            if success {
+                self.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                self.displayError(errorString!)
+            }
+        }
+    }
+    
+    
     @IBAction func PostInfo(sender: AnyObject) {
         
         let InfoPoster = storyboard!.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
@@ -125,59 +139,30 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
         
         self.mapView.removeAnnotations(annotations)
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Constants.URLs.Locations)!)
-        request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue(Constants.OTMParameterValues.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            
-            // if an error occurs, print it and re-enable the UI
-            func displayError(error: String, debugLabelText: String? = nil) {
-                print(error)
+        let url = NSURL(string: Constants.URLs.Locations + "?order=-updatedAt")!
+        
+        ParseClient.sharedInstance().getLocations(url, method: .GET) {(success, errorString) in
+            if success {
+                self.loadDataToMap()
+            } else {
+                self.displayError(errorString!)
             }
-            
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                displayError("There was an error with your request: \(error)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                displayError("Your request returned a status code other than 2xx!")
-                return
-            }
-            
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                displayError("No data was returned by the request!")
-                return
-            }
-            
-            /* 5. Parse the data */
-            
-            let parsedResult: AnyObject
-            do {
-                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                if let students = parsedResult["results"] as? [[String: AnyObject]] {
-                    
-                    self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    self.appDelegate.locations = StudentLocation.locationFromResults(students)
-                    
-                }
-                
-            } catch {
-                displayError("Could not parse the data as JSON: '\(data)'")
-                return
-            }
-            
-            self.loadDataToMap()
-            
         }
-        
-        task.resume()
-        
     }
+    
+    private func displayError(error:String) {
+        print(error)
+        
+        let alert:UIAlertController = UIAlertController(title:"Alert", message: error, preferredStyle: .Alert)
+        self.presentViewController(alert, animated: true, completion: nil)
+        
+        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(action:UIAlertAction!) -> Void in})
+        
+        alert.addAction(cancelAction)
+        
+        self.navigationController?.pushViewController(alert, animated: true)
+    }
+    
 
     
 }

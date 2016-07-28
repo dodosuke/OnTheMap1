@@ -39,52 +39,29 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
     
     func InfoPosting() {
         
-        let request = NSMutableURLRequest(URL: NSURL(string: Constants.URLs.Locations)!)
-        request.HTTPMethod = "POST"
-        request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue(Constants.OTMParameterValues.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let url = NSURL(string: Constants.URLs.Locations)!
         
-        
-        let postingInfo = dataToJson()
-        request.HTTPBody = postingInfo.dataUsingEncoding(NSUTF8StringEncoding)
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error…
-                return
+        ParseClient.sharedInstance().getLocations(url, method: .POST) {(success, errorString) in
+            if success {
+                self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                
             }
-            print(NSString(data: data!, encoding: NSUTF8StringEncoding))
         }
-        task.resume()
-        
-        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     
     func InfoPutting() {
         
-        let urlString = Constants.URLs.Locations + "/" + appDelegate.userObjectID!
-        let url = NSURL(string: urlString)
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "PUT"
-        request.addValue(Constants.OTMParameterValues.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue(Constants.OTMParameterValues.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        let url = NSURL(string: Constants.URLs.Locations + "/" + appDelegate.userObjectID!)
         
-        let postingInfo = dataToJson()
-        request.HTTPBody = postingInfo.dataUsingEncoding(NSUTF8StringEncoding)
-
-        let session = NSURLSession.sharedSession()
-        let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error…
-                return
+        ParseClient.sharedInstance().getLocations(url, method: .PUT) {(success, errorString) in
+            if success {
+                self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+            } else {
+                
             }
-            print(NSString(data: data!, encoding: NSUTF8StringEncoding))
         }
-        task.resume()
-        
-        self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
     
@@ -100,21 +77,6 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
         submitButton.enabled = !(linkTextField.text!.isEmpty)
         appDelegate.userMediaURL = linkTextField.text!
         return true
-    }
-    
-    func dataToJson() -> String {
-        
-        var postinginfo:String = ""
-        let uniqueKey:String = "{\"uniqueKey\": \"" + appDelegate.userUniqueKey!
-        let firstName:String = "\", \"firstName\": \"" + appDelegate.userFirstName!
-        let lastName:String = "\", \"lastName\": \"" + appDelegate.userLastName!
-        let mapString:String = "\",\"mapString\": \"" + appDelegate.userMapString!
-        let mediaURL: String = "\", \"mediaURL\": \"" + appDelegate.userMediaURL!
-        let lat: String = "\",\"latitude\": " + String(appDelegate.userLat!)
-        let long: String = ", \"longitude\": " + String(appDelegate.userLong!) + "}"
-        postinginfo = uniqueKey + firstName + lastName + mapString + mediaURL + lat + long
-        
-        return postinginfo
     }
     
 }
