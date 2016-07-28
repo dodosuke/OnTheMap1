@@ -8,6 +8,22 @@
 
 import UIKit
 
+class StoringData {
+    
+    static var locations = [StudentLocation]?()
+    
+    var userObjectID:String? = nil
+    var userUniqueKey: String? = nil
+    var userFirstName: String? = nil
+    var userLastName: String? = nil
+    var userMediaURL: String? = nil
+    var userMapString: String? = nil
+    var userLat: Double? = nil
+    var userLong: Double? = nil
+    var alreadyExist: Bool = false
+    
+}
+
 struct StudentLocation {
 
     var objectId: String

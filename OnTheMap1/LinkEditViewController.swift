@@ -14,7 +14,6 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var submitButton: UIBarButtonItem!
     
     var appDelegate: AppDelegate!
-    var userLocation: StudentLocation?
     
     override func viewDidLoad() {
         

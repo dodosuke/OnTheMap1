@@ -12,7 +12,10 @@ class ParseClient: NSObject {
     
     var appDelegate: AppDelegate!
     
+    
     func getLocations(url: NSURL!, method: Constants.Method, completionHandlerForParse: (success: Bool, errorString: String?) -> Void) {
+        
+        self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         let request = NSMutableURLRequest(URL: url!)
         
@@ -79,9 +82,8 @@ class ParseClient: NSObject {
                             self.appDelegate.alreadyExist = true
                             
                         } else {
-                        
-                        self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                        self.appDelegate.locations = StudentLocation.locationFromResults(results)
+
+                        StoringData.locations = StudentLocation.locationFromResults(results)!
                         
                         }
                     }

@@ -29,7 +29,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
     func loadDataToMap() {
         
         appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let locations = self.appDelegate.locations
+        let locations = StoringData.locations
         
         annotations = []
         

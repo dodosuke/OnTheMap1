@@ -13,9 +13,7 @@ class TableViewController: UITableViewController {
     
     var appDelegate: AppDelegate!
     
-    var locations: [StudentLocation]!{
-        get{return (UIApplication.sharedApplication().delegate as! AppDelegate).locations}
-    }
+    var locations = StoringData.locations!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
