@@ -44,7 +44,7 @@ class ParseClient: NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                sendError("There was an error with your request")
                 return
             }
             
@@ -87,7 +87,7 @@ class ParseClient: NSObject {
                     }
                     
                 } catch {
-                    sendError("Could not parse the data as JSON: '\(data)'")
+                    sendError("Could not parse the data as JSON")
                     return
                 }
             default:

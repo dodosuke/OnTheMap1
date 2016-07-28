@@ -71,7 +71,6 @@ class TableViewController: UITableViewController {
         if self.appDelegate.alreadyExist {
             
             let alert:UIAlertController = UIAlertController(title:"Alert", message: "You have already posted a student location. Would you like to overwrite?", preferredStyle: .Alert)
-            self.presentViewController(alert, animated: true, completion: nil)
             
             let overwriteAction:UIAlertAction = UIAlertAction(title: "Overwrite", style: .Default, handler:{(action:UIAlertAction!) -> Void in
                 self.presentViewController(InfoPoster, animated: true, completion: nil)
@@ -108,13 +107,12 @@ class TableViewController: UITableViewController {
         print(error)
         
         let alert:UIAlertController = UIAlertController(title:"Alert", message: error, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true, completion: nil)
         
         let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(action:UIAlertAction!) -> Void in})
         
         alert.addAction(cancelAction)
         
-        self.navigationController?.pushViewController(alert, animated: true)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
 }

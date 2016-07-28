@@ -14,6 +14,7 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
     @IBOutlet weak var destSearchBar: UISearchBar!
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var nextStep: UIBarButtonItem!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var locationManager: CLLocationManager!
     var destLocation: CLLocationCoordinate2D!
@@ -35,6 +36,9 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
         
         destSearchBar.resignFirstResponder()
         
+        self.activityIndicator.alpha = 1.0
+        self.activityIndicator.startAnimating()
+        
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(destSearchBar.text!, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             if (error == nil) {
@@ -42,6 +46,8 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
                     self.destLocation = CLLocationCoordinate2DMake(placemark.location!.coordinate.latitude, placemark.location!.coordinate.longitude)
                     self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
                     self.locationManager.startUpdatingLocation()
+                    self.activityIndicator.alpha = 0.0
+                    self.activityIndicator.stopAnimating()
                     self.showOnMap()
                     self.nextStep.enabled = true
                     
@@ -82,10 +88,10 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
     func errorPopUp() {
         
         let alert:UIAlertController = UIAlertController(title:"Alert", message: "Cannot find the place", preferredStyle: UIAlertControllerStyle.Alert)
-        presentViewController(alert, animated: true, completion: nil)
+        
         let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:{(action:UIAlertAction!) -> Void in })
         alert.addAction(cancelAction)
-        self.navigationController?.pushViewController(alert, animated: true)
+        presentViewController(alert, animated: true, completion: nil)
 
     }
 

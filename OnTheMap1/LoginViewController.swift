@@ -132,7 +132,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         print(error)
         performUIUpdatesOnMain {
             self.setUIEnabled(true)
-            self.debugTextLabel.text = "Login Failed (Login Step)."
+            
+            let alert:UIAlertController = UIAlertController(title:"Login Failed", message: error, preferredStyle: .Alert)
+            let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(action:UIAlertAction!) -> Void in})
+            alert.addAction(cancelAction)
+            self.presentViewController(alert, animated: true, completion: nil)
         }
         
     }

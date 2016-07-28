@@ -45,7 +45,7 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
             if success {
                 self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             } else {
-                
+                self.displayError(errorString!)
             }
         }
     }
@@ -59,11 +59,22 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
             if success {
                 self.presentingViewController?.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
             } else {
-                
+                self.displayError(errorString!)
             }
         }
     }
     
+    private func displayError(error:String) {
+        print(error)
+        
+        let alert:UIAlertController = UIAlertController(title:"Alert", message: error, preferredStyle: .Alert)
+        
+        let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(action:UIAlertAction!) -> Void in})
+        
+        alert.addAction(cancelAction)
+        
+        presentViewController(alert, animated: true, completion: nil)
+    }
     
     
     @IBAction func backToMapSearch(sender: AnyObject) {

@@ -12,10 +12,9 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegate {
     
-    // The map. See the setup in the Storyboard file. Note particularly that the view controller
-    // is set up as the map view's delegate.
     @IBOutlet weak var mapView: MKMapView!
-    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+   
     var appDelegate: AppDelegate!
     var loginViewController: LoginViewController!
     var annotations = [MKPointAnnotation]()
@@ -57,12 +56,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
         
     }
     
-    // MARK: - MKMapViewDelegate
-    
-    // Here we create a view with a "right callout accessory view". You might choose to look into other
-    // decoration alternatives. Notice the similarity between this method and the cellForRowAtIndexPath
-    // method in TableViewDataSource.
-    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
@@ -82,9 +75,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
         return pinView
     }
     
-    
-    // This delegate method is implemented to respond to taps. It opens the system browser
-    // to the URL specified in the annotationViews subtitle property.
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
@@ -115,7 +105,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
         if self.appDelegate.alreadyExist {
             
             let alert:UIAlertController = UIAlertController(title:"Alert", message: "You have already posted a student location. Would you like to overwrite?", preferredStyle: .Alert)
-            self.presentViewController(alert, animated: true, completion: nil)
             
             let overwriteAction:UIAlertAction = UIAlertAction(title: "Overwrite", style: .Default, handler:{(action:UIAlertAction!) -> Void in
                 self.presentViewController(InfoPoster, animated: true, completion: nil)
@@ -125,7 +114,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
             alert.addAction(overwriteAction)
             alert.addAction(cancelAction)
             
-            self.navigationController?.pushViewController(alert, animated: true)
+            presentViewController(alert, animated: true, completion: nil)
             
         } else {
             
@@ -138,14 +127,20 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
     @IBAction func refreshData(sender: AnyObject) {
         
         self.mapView.removeAnnotations(annotations)
+        self.activityIndicator.alpha = 1.0
+        self.activityIndicator.startAnimating()
         
         let url = NSURL(string: Constants.URLs.Locations + "?order=-updatedAt")!
         
         ParseClient.sharedInstance().getLocations(url, method: .GET) {(success, errorString) in
             if success {
                 self.loadDataToMap()
+                self.activityIndicator.alpha = 0.0
+                self.activityIndicator.stopAnimating()
             } else {
                 self.displayError(errorString!)
+                self.activityIndicator.alpha = 0.0
+                self.activityIndicator.stopAnimating()
             }
         }
     }
@@ -154,13 +149,12 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
         print(error)
         
         let alert:UIAlertController = UIAlertController(title:"Alert", message: error, preferredStyle: .Alert)
-        self.presentViewController(alert, animated: true, completion: nil)
         
         let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: {(action:UIAlertAction!) -> Void in})
         
         alert.addAction(cancelAction)
         
-        self.navigationController?.pushViewController(alert, animated: true)
+        presentViewController(alert, animated: true, completion: nil)
     }
     
 

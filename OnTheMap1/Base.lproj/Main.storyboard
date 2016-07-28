@@ -162,10 +162,15 @@
                                     <outlet property="delegate" destination="kwR-ZC-nR2" id="3UC-Zu-S2R"/>
                                 </connections>
                             </mapView>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="36j-BY-swE">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="36j-BY-swE" firstAttribute="centerX" secondItem="oiL-gq-om1" secondAttribute="centerX" id="5cg-b8-mA0"/>
                             <constraint firstItem="keP-GM-zyu" firstAttribute="centerY" secondItem="oiL-gq-om1" secondAttribute="centerY" id="Dpl-az-dNQ"/>
+                            <constraint firstItem="36j-BY-swE" firstAttribute="centerY" secondItem="oiL-gq-om1" secondAttribute="centerY" id="Xcr-mP-5sK"/>
                             <constraint firstItem="keP-GM-zyu" firstAttribute="width" secondItem="oiL-gq-om1" secondAttribute="width" id="Zge-Zw-eBb"/>
                             <constraint firstItem="keP-GM-zyu" firstAttribute="height" secondItem="oiL-gq-om1" secondAttribute="height" id="aMZ-N0-pfg"/>
                             <constraint firstItem="keP-GM-zyu" firstAttribute="centerX" secondItem="oiL-gq-om1" secondAttribute="centerX" id="vnd-eD-iRu"/>
@@ -191,6 +196,7 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="36j-BY-swE" id="eOv-ue-nWf"/>
                         <outlet property="mapView" destination="keP-GM-zyu" id="NUx-hc-hGY"/>
                     </connections>
                 </viewController>
@@ -286,6 +292,9 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <activityIndicatorView opaque="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EOy-rV-DdV">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -293,8 +302,10 @@
                             <constraint firstItem="1e1-xk-t8E" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="CKB-EU-hGm"/>
                             <constraint firstItem="1e1-xk-t8E" firstAttribute="top" secondItem="zfx-mt-qOA" secondAttribute="bottom" id="Drp-tq-iR5"/>
                             <constraint firstItem="BBA-a0-3SO" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="Eds-AO-rXK"/>
+                            <constraint firstItem="EOy-rV-DdV" firstAttribute="centerY" secondItem="mdn-t2-tcZ" secondAttribute="centerY" id="PYY-5G-YOl"/>
                             <constraint firstItem="mmZ-n9-guv" firstAttribute="top" secondItem="Y0T-Mt-xIx" secondAttribute="bottom" id="UDi-VQ-sEA"/>
                             <constraint firstItem="Y0T-Mt-xIx" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="Ydz-01-WiK"/>
+                            <constraint firstItem="EOy-rV-DdV" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="cn8-Gi-vnY"/>
                             <constraint firstItem="1e1-xk-t8E" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="cp0-jh-W9y"/>
                             <constraint firstItem="Y0T-Mt-xIx" firstAttribute="centerX" secondItem="mdn-t2-tcZ" secondAttribute="centerX" id="e8B-32-WrK"/>
                             <constraint firstItem="BBA-a0-3SO" firstAttribute="width" secondItem="mdn-t2-tcZ" secondAttribute="width" id="faF-fZ-3Dk"/>
@@ -305,6 +316,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="EOy-rV-DdV" id="Zi0-FS-qYq"/>
                         <outlet property="destSearchBar" destination="BBA-a0-3SO" id="4dy-gm-i8v"/>
                         <outlet property="mapView" destination="Y0T-Mt-xIx" id="sXW-XB-RN5"/>
                         <outlet property="nextStep" destination="0v1-T2-Dvv" id="heK-dC-WIR"/>
