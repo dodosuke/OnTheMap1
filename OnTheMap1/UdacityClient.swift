@@ -41,26 +41,28 @@ class UdacityClient: NSObject {
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
             // if an error occurs, print it and re-enable the UI
-            func sendError(error: String, debugLabelText: String? = nil) {
+            func sendError(error: String) {
                 print(error)
                 completionHandlerForUdacity(success: false, errorString: error)
             }
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request")
+                let errorString = error?.userInfo["NSLocalizedDescription"] as! String
+                sendError(errorString)
                 return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
+                let statusCode = (response as? NSHTTPURLResponse)?.statusCode
+                sendError("Your request returned a status code other than 2xx!: status code =" + String(statusCode!))
                 return
             }
             
             /* GUARD: Was there any data returned? */
             guard let data = data else {
-                sendError("No data was returned by the request!")
+                sendError("No data was returned by the request!" )
                 return
             }
             

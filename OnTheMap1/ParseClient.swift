@@ -42,13 +42,16 @@ class ParseClient: NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request")
+                print(error)
+                let errorString = error?.userInfo["NSLocalizedDescription"] as! String
+                sendError(errorString)
                 return
             }
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
+                let statusCode = (response as? NSHTTPURLResponse)?.statusCode
+                sendError("Your request returned a status code other than 2xx!: status code =" + String(statusCode!))
                 return
             }
             

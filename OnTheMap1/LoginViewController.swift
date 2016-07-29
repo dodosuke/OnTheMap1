@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBAction func loginPressed(sender: AnyObject) {
         
         if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
-            debugTextLabel.text = "Username or Password Empty."
+            displayError("Username or Password Empty.")
         } else {
             setUIEnabled(false)
             getSessionID()

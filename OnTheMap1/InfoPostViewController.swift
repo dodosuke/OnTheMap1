@@ -40,6 +40,7 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
         
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(destSearchBar.text!, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
+            
             if (error == nil) {
                 if let placemark = placemarks![0] as? CLPlacemark {
                     
@@ -49,7 +50,7 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
                     self.destLocation = CLLocationCoordinate2DMake(placemark.location!.coordinate.latitude, placemark.location!.coordinate.longitude)
                     self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
                     self.locationManager.startUpdatingLocation()
-
+                    
                     self.showOnMap()
                     self.nextStep.enabled = true
                     
@@ -60,7 +61,7 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
             } else {
                 self.activityIndicator.alpha = 0.0
                 self.activityIndicator.stopAnimating()
-                self.errorPopUp()
+                self.errorPopUp(error!)
             }
         })
     }
@@ -88,9 +89,10 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
         
     }
     
-    func errorPopUp() {
+    func errorPopUp(error: NSError) {
         
-        let alert:UIAlertController = UIAlertController(title:"Alert", message: "Cannot find the place", preferredStyle: UIAlertControllerStyle.Alert)
+        print(error)
+        let alert:UIAlertController = UIAlertController(title:"Alert", message:"Could not find the place", preferredStyle: UIAlertControllerStyle.Alert)
         
         let cancelAction:UIAlertAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler:{(action:UIAlertAction!) -> Void in })
         alert.addAction(cancelAction)
