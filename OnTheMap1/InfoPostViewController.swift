@@ -18,7 +18,6 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
     
     var locationManager: CLLocationManager!
     var destLocation: CLLocationCoordinate2D!
-    var appDelegate: AppDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,20 +42,24 @@ class InfoPostViewController: UIViewController, MKMapViewDelegate, UISearchBarDe
         geocoder.geocodeAddressString(destSearchBar.text!, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
             if (error == nil) {
                 if let placemark = placemarks![0] as? CLPlacemark {
+                    
+                    self.activityIndicator.alpha = 0.0
+                    self.activityIndicator.stopAnimating()
+                    
                     self.destLocation = CLLocationCoordinate2DMake(placemark.location!.coordinate.latitude, placemark.location!.coordinate.longitude)
                     self.mapView.addAnnotation(MKPlacemark(placemark: placemark))
                     self.locationManager.startUpdatingLocation()
-                    self.activityIndicator.alpha = 0.0
-                    self.activityIndicator.stopAnimating()
+
                     self.showOnMap()
                     self.nextStep.enabled = true
                     
-                    self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    self.appDelegate.userMapString = self.destSearchBar.text!
-                    self.appDelegate.userLat = self.destLocation.latitude
-                    self.appDelegate.userLong = self.destLocation.longitude
+                    StoringData.userMapString = self.destSearchBar.text!
+                    StoringData.userLat = self.destLocation.latitude
+                    StoringData.userLong = self.destLocation.longitude
                 }
             } else {
+                self.activityIndicator.alpha = 0.0
+                self.activityIndicator.stopAnimating()
                 self.errorPopUp()
             }
         })

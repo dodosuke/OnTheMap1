@@ -15,16 +15,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    var appDelegate: AppDelegate!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         usernameTextField.delegate = self
         passwordTextField.delegate = self
         
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,8 +62,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.debugTextLabel.text = "Getting Your Information from Udacity"
         }
 
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        let url = NSURL(string: Constants.URLs.Users + appDelegate.userUniqueKey!)
+        let url = NSURL(string: Constants.URLs.Users + StoringData.userUniqueKey!)
         
         UdacityClient.sharedInstance().udacityLogIn(url, method: .GET, userId: usernameTextField.text!, userPW: passwordTextField.text!) {(success, errorString) in
             if success {
@@ -102,7 +97,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             self.debugTextLabel.text = "Getting Your Information from Parse"
         }
         
-        let url = NSURL(string: Constants.URLs.LocationA + self.appDelegate.userUniqueKey! + Constants.URLs.LocationB)
+        let url = NSURL(string: Constants.URLs.LocationA + StoringData.userUniqueKey! + Constants.URLs.LocationB)
         
         ParseClient.sharedInstance().getLocations(url, method: .GET) {(success, errorString) in
             if success {

@@ -14,8 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
     
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-   
-    var appDelegate: AppDelegate!
+
     var loginViewController: LoginViewController!
     var annotations = [MKPointAnnotation]()
     
@@ -28,7 +27,6 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
     
     func loadDataToMap() {
         
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         let locations = StoringData.locations
         
         annotations = []
@@ -102,7 +100,7 @@ class MapViewController: UIViewController, MKMapViewDelegate, UIAlertViewDelegat
         
         let InfoPoster = storyboard!.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
         
-        if self.appDelegate.alreadyExist {
+        if StoringData.alreadyExist {
             
             let alert:UIAlertController = UIAlertController(title:"Alert", message: "You have already posted a student location. Would you like to overwrite?", preferredStyle: .Alert)
             

@@ -13,13 +13,11 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var linkTextField: UITextField!
     @IBOutlet weak var submitButton: UIBarButtonItem!
     
-    var appDelegate: AppDelegate!
     
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         submitButton.enabled = false
         linkTextField.delegate = self
         
@@ -28,7 +26,7 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func postInfo(sender: AnyObject) {
         
-        if appDelegate.alreadyExist {
+        if StoringData.alreadyExist {
             InfoPutting()
         } else {
             InfoPosting()
@@ -52,7 +50,7 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
     
     func InfoPutting() {
         
-        let url = NSURL(string: Constants.URLs.Locations + "/" + appDelegate.userObjectID!)
+        let url = NSURL(string: Constants.URLs.Locations + "/" + StoringData.userObjectID!)
         
         ParseClient.sharedInstance().getLocations(url, method: .PUT) {(success, errorString) in
             if success {
@@ -85,7 +83,7 @@ class LinkEditViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         submitButton.enabled = !(linkTextField.text!.isEmpty)
-        appDelegate.userMediaURL = linkTextField.text!
+        StoringData.userMediaURL = linkTextField.text!
         return true
     }
     

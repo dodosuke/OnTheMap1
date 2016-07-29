@@ -10,8 +10,6 @@ import UIKit
 
 class UdacityClient: NSObject {
     
-    var appDelegate: AppDelegate!
-    
     func udacityLogIn(url: NSURL!, method: Constants.Method, userId: String, userPW: String, completionHandlerForUdacity: (success: Bool, errorString: String?) -> Void) {
         
         /* 2/3. Build the URL, Configure the request */
@@ -75,8 +73,7 @@ class UdacityClient: NSObject {
                 do {
                     parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
                     if let account = parsedResult["account"] as? [String:AnyObject] {
-                        self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                        self.appDelegate.userUniqueKey = (account["key"] as? String)!
+                        StoringData.userUniqueKey = (account["key"] as? String)!
                     }
                 } catch {
                     sendError("Could not parse the data as JSON")
@@ -88,10 +85,9 @@ class UdacityClient: NSObject {
                 do {
                     parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
                     if let user = parsedResult["user"] as? [String: AnyObject] {
-                        self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                        self.appDelegate.userFirstName = (user["first_name"] as? String)!
-                        self.appDelegate.userLastName = (user["last_name"] as? String)!
-                        self.appDelegate.userMapString? = (user["linkedin_url"] as? String)!
+                        StoringData.userFirstName = (user["first_name"] as? String)!
+                        StoringData.userLastName = (user["last_name"] as? String)!
+                        StoringData.userMapString? = (user["linkedin_url"] as? String)!
                     }
                 } catch {
                     sendError("Could not parse the data as JSON")

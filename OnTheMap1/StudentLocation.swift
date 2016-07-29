@@ -12,15 +12,15 @@ class StoringData {
     
     static var locations = [StudentLocation]?()
     
-    var userObjectID:String? = nil
-    var userUniqueKey: String? = nil
-    var userFirstName: String? = nil
-    var userLastName: String? = nil
-    var userMediaURL: String? = nil
-    var userMapString: String? = nil
-    var userLat: Double? = nil
-    var userLong: Double? = nil
-    var alreadyExist: Bool = false
+    static var userObjectID:String? = nil
+    static var userUniqueKey: String? = nil
+    static var userFirstName: String? = nil
+    static var userLastName: String? = nil
+    static var userMediaURL: String? = nil
+    static var userMapString: String? = nil
+    static var userLat: Double? = nil
+    static var userLong: Double? = nil
+    static var alreadyExist: Bool = false
     
 }
 

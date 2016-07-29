@@ -11,8 +11,6 @@ import UIKit
 
 class TableViewController: UITableViewController {
     
-    var appDelegate: AppDelegate!
-    
     var locations = StoringData.locations!
     
     override func viewWillAppear(animated: Bool) {
@@ -65,8 +63,7 @@ class TableViewController: UITableViewController {
         
         let InfoPoster = storyboard!.instantiateViewControllerWithIdentifier("InfoPostViewController") as! InfoPostViewController
         
-        appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        if self.appDelegate.alreadyExist {
+        if StoringData.alreadyExist {
             
             let alert:UIAlertController = UIAlertController(title:"Alert", message: "You have already posted a student location. Would you like to overwrite?", preferredStyle: .Alert)
             
@@ -94,6 +91,7 @@ class TableViewController: UITableViewController {
         
         ParseClient.sharedInstance().getLocations(url, method: .GET) {(success, errorString) in
             if success {
+                self.locations = StoringData.locations!
                 self.tableView?.reloadData()
             } else {
                 self.displayError(errorString!)

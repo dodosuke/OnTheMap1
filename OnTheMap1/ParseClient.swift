@@ -10,12 +10,7 @@ import UIKit
 
 class ParseClient: NSObject {
     
-    var appDelegate: AppDelegate!
-    
-    
     func getLocations(url: NSURL!, method: Constants.Method, completionHandlerForParse: (success: Bool, errorString: String?) -> Void) {
-        
-        self.appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 
         let request = NSMutableURLRequest(URL: url!)
         
@@ -74,12 +69,12 @@ class ParseClient: NSObject {
                     if let results = parsedResult["results"] as? [[String: AnyObject]] {
                         if results.count == 0 {
                             
-                            self.appDelegate.alreadyExist = false
+                            StoringData.alreadyExist = false
                             
                         } else if results.count == 1 {
                             
-                            self.appDelegate.userObjectID = results[0]["objectId"] as? String
-                            self.appDelegate.alreadyExist = true
+                            StoringData.userObjectID = results[0]["objectId"] as? String
+                            StoringData.alreadyExist = true
                             
                         } else {
 
@@ -106,13 +101,13 @@ class ParseClient: NSObject {
     
     private func userDataToJson() -> String {
         
-        let uniqueKey:String = "{\"uniqueKey\": \"" + appDelegate.userUniqueKey!
-        let firstName:String = "\", \"firstName\": \"" + appDelegate.userFirstName!
-        let lastName:String = "\", \"lastName\": \"" + appDelegate.userLastName!
-        let mapString:String = "\",\"mapString\": \"" + appDelegate.userMapString!
-        let mediaURL: String = "\", \"mediaURL\": \"" + appDelegate.userMediaURL!
-        let lat: String = "\",\"latitude\": " + String(appDelegate.userLat!)
-        let long: String = ", \"longitude\": " + String(appDelegate.userLong!) + "}"
+        let uniqueKey:String = "{\"uniqueKey\": \"" + StoringData.userUniqueKey!
+        let firstName:String = "\", \"firstName\": \"" + StoringData.userFirstName!
+        let lastName:String = "\", \"lastName\": \"" + StoringData.userLastName!
+        let mapString:String = "\",\"mapString\": \"" + StoringData.userMapString!
+        let mediaURL: String = "\", \"mediaURL\": \"" + StoringData.userMediaURL!
+        let lat: String = "\",\"latitude\": " + String(StoringData.userLat!)
+        let long: String = ", \"longitude\": " + String(StoringData.userLong!) + "}"
         let postinginfo = uniqueKey + firstName + lastName + mapString + mediaURL + lat + long
         
         return postinginfo
@@ -126,5 +121,5 @@ class ParseClient: NSObject {
         return Singleton.sharedInstance
     }
     
-    
 }
+
